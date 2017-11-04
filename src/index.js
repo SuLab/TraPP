@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Route } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import store, { history } from './store';
-import { PrimaryLayout } from './containers/layout';
+import { PrimaryLayout } from './containers/Layout';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 

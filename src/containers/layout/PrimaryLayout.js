@@ -1,14 +1,14 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { NavBar } from '../../components/navigation';
-import Home from '../home';
+import { NavBar } from '../../components/Navigation';
+import Home from '../Home';
 import { setIsMobile } from '../../redux/mobile';
 import { Connect } from '../../utils';
 
 class PrimaryLayout extends React.Component {
   handleWindowSizeChange = () => {
-    const isMobile = (window.innerWidth < 768);
+    const isMobile = window.innerWidth < 768;
     this.props.setIsMobile(isMobile);
   };
 
@@ -36,11 +36,12 @@ class PrimaryLayout extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  setIsMobile
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      setIsMobile,
+    },
+    dispatch
+  );
 
-export default Connect(
-  null,
-  mapDispatchToProps
-)(PrimaryLayout);
+export default Connect(null, mapDispatchToProps)(PrimaryLayout);
