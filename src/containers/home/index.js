@@ -10,7 +10,7 @@ import './styles.css';
 class Home extends React.Component {
   render() {
     return (
-      <Container>
+      <Container fluid>
         <PathForm />
         <Grid>
           <Grid.Column width={10}>

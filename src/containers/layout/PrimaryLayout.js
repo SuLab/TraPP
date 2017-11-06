@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { NavBar } from '../../components/Navigation';
-import Home from '../Home';
+import { NavBar } from '../../components/navigation';
+import Home from '../home';
 import { setIsMobile } from '../../redux/mobile';
 import { Connect } from '../../utils';
 
