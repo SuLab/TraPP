@@ -98,12 +98,26 @@ class PathView extends React.Component {
     const { isMobile } = this.props;
     const nodes = [
       'Node1',
-      'Node1',
-      'Node1',
-      'Node1',
-      'Node1',
-      'Node1',
-      'Node1'
+      'Node2',
+      'Node3',
+      'Node4',
+      'Node5',
+      'Node6',
+      'Node7',
+      'Node8',
+      'Node9',
+      'Node10',
+      'Node11',
+      'Node12',
+      'Node13',
+      'Node14',
+      'Node15',
+      'Node16',
+      'Node17',
+      'Node18',
+      'Node19',
+      'Node20',
+      'Node21'
     ];
     return (
       <div>
@@ -111,7 +125,7 @@ class PathView extends React.Component {
         <svg
           className="svgContainer"
           width="100%"
-          height="400px">
+          height="600px">
           <g className="subContainer" transform={ 'translate(' + this.state.transform.x + ', ' + this.state.transform.y + ')scale(' + this.state.transform.k + ')' }>
             <NodeGroup nodes={nodes} />
           </g>

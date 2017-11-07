@@ -83,6 +83,23 @@ line.link {
   cursor: pointer;
 }
 
+.scroll-group {
+  width : 100px;
+}
+
+.up-button, .down-button {
+  display: inline-block;
+  font-size:12px;
+  padding:4px;
+  border:1px solid #000;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.up-button:hover, .down-button:hover {
+  color: #aaa;
+}
+
 .node-label {
   font-size:13px;
 }

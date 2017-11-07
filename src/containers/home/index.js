@@ -13,10 +13,10 @@ class Home extends React.Component {
       <Container fluid>
         <PathForm />
         <Grid>
-          <Grid.Column width={10}>
+          <Grid.Column width={12}>
             <PathView />
           </Grid.Column>
-          <Grid.Column width={6}>
+          <Grid.Column width={4}>
             <PathFilter />
           </Grid.Column>
         </Grid>
