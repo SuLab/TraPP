@@ -12,14 +12,17 @@ class PathView extends React.Component {
     super(props);
 
     const nodes = this.relocateNodes(sampleNode, 100);
-    
+
     this.state = {
       nodes: nodes,
       baseSvg: null,
       width: this.props.width,
       height: this.props.height,
       isMouseDown: false,
-      editLabel: (typeof this.props.editLabel !== 'undefined') ? this.props.editLabel : false,
+      editLabel:
+        typeof this.props.editLabel !== 'undefined'
+          ? this.props.editLabel
+          : false,
       transform: {
         k: 1,
         x: 0,
@@ -28,30 +31,36 @@ class PathView extends React.Component {
     };
   }
 
-  componentWillMount() {
-  }
+  componentWillMount() {}
 
   componentDidMount() {
     const that = this;
-    const zoomListener = d3.zoom()
-                  .scaleExtent([0.1, 2])
-                  .on('zoom', () => {
-                      that.onZoomHandler(d3.event);
-                  });
-    const baseSvg = d3.select('.svgContainer')
-                  .on('mousedown', function () { that.onMouseDownHandler(d3.mouse(this), d3.event); })
-                  .on('mousemove', function () { that.onMouseMoveHandler(); })
-                  .on('mouseup', function () { that.onMouseUpHandler(); })
-                  .on('click', function () { that.onClickHandler(d3.mouse(this), d3.event);})
-                  .call(zoomListener);
+    const zoomListener = d3
+      .zoom()
+      .scaleExtent([0.1, 2])
+      .on('zoom', () => {
+        that.onZoomHandler(d3.event);
+      });
+    const baseSvg = d3
+      .select('.svgContainer')
+      .on('mousedown', function() {
+        that.onMouseDownHandler(d3.mouse(this), d3.event);
+      })
+      .on('mousemove', function() {
+        that.onMouseMoveHandler();
+      })
+      .on('mouseup', function() {
+        that.onMouseUpHandler();
+      })
+      .on('click', function() {
+        that.onClickHandler(d3.mouse(this), d3.event);
+      })
+      .call(zoomListener);
   }
 
-  componentWillReceiveProps(nextProps) {
-  }
+  componentWillReceiveProps(nextProps) {}
 
-  componentDidUpdate(prevProps, prevState) {
-
-  }
+  componentDidUpdate(prevProps, prevState) {}
 
   onZoomHandler(event) {
     this.updateTransform(event.transform);
@@ -71,7 +80,6 @@ class PathView extends React.Component {
     this.setState({
       isMouseDown: true,
     });
-    
   }
 
   onMouseUpHandler() {
@@ -91,19 +99,19 @@ class PathView extends React.Component {
 
   updateTransform(transform) {
     if (this.props.updateTransform) {
-      this.props.updateTransform(transform)
-    }    
+      this.props.updateTransform(transform);
+    }
   }
 
-  zoomedPosition( transform, x, y) {
-      const transX = transform.x;
-      const transY = transform.y;
-      const scale = transform.k;
+  zoomedPosition(transform, x, y) {
+    const transX = transform.x;
+    const transY = transform.y;
+    const scale = transform.k;
 
-      const newX = (x - transX) / scale;
-      const newY = (y - transY) / scale;
+    const newX = (x - transX) / scale;
+    const newY = (y - transY) / scale;
 
-      return [newX, newY];
+    return [newX, newY];
   }
 
   relocateNodes(nodes, y) {
@@ -114,7 +122,7 @@ class PathView extends React.Component {
       nodeObj.nodes = nodes;
       nodeObj.pos = {
         x: index * margin,
-        y: y
+        y: y,
       };
       newNodes.push(nodeObj);
     });
@@ -137,16 +145,23 @@ class PathView extends React.Component {
 
   render() {
     const { isMobile } = this.props;
-    
+
     return (
       <div>
         <h4>PathView</h4>
-        <svg
-          className="svgContainer"
-          width="100%"
-          height="600px">
-          <g className="subContainer" transform={ 'translate(' + this.state.transform.x + ', ' + this.state.transform.y + ')scale(' + this.state.transform.k + ')' }>
-            
+        <svg className="svgContainer" width="100%" height="600px">
+          <g
+            className="subContainer"
+            transform={
+              'translate(' +
+              this.state.transform.x +
+              ', ' +
+              this.state.transform.y +
+              ')scale(' +
+              this.state.transform.k +
+              ')'
+            }
+          >
             {this.renderFlow()}
           </g>
         </svg>
