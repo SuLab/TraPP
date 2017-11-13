@@ -5,7 +5,10 @@ import * as d3 from 'd3';
 export default class NodeGroup extends React.Component {
   static propTypes = {
     nodes: PropTypes.array,
-    expanded: PropTypes.bool
+    expanded: PropTypes.bool,
+    pos: PropTypes.object,
+    connect: PropTypes.object,
+    id: PropTypes.string
   };
 
   constructor(props) {
@@ -13,6 +16,8 @@ export default class NodeGroup extends React.Component {
     this.state = {
       width: 120,
       height: 25,
+      connect: this.props.connect ? this.props.connect : null,
+      pos: this.props.pos ? this.props.pos : {x:0, y:0},
       margin: 5,
       offset: 0,
       limit: 10,
@@ -28,6 +33,11 @@ export default class NodeGroup extends React.Component {
     if (nextProps.expanded && this.state.expanded !== nextProps.expanded) {
       this.setState({
         expanded: nextProps.expanded
+      });
+    }
+    if (nextProps.pos && this.state.pos ) {
+      this.setState({
+        pos: nextProps.pos
       });
     }
   }
@@ -67,6 +77,21 @@ export default class NodeGroup extends React.Component {
       return limit * ( height + margin )
     } else {
       return rects.length * ( height + margin );
+    }
+  }
+
+  renderLinks = () => {
+    const startPos = this.state.connect;
+    const curPos = this.state.pos;
+    if (startPos) {
+      return (
+        <line
+          x1 = {startPos.pos.x}
+          y1 = {startPos.pos.y}
+          x2 = {curPos.x}
+          y2 = {curPos.y}
+        />
+      );
     }
   }
 
@@ -136,7 +161,9 @@ export default class NodeGroup extends React.Component {
   renderGroup = () => {
     const { rects} = this.state;
     return (
-      <g>
+      <g
+        transform = { 'translate(0, 0)'}
+      >
         <rect
           width="150"
           height="60"
@@ -186,15 +213,19 @@ export default class NodeGroup extends React.Component {
   }
 
   render() {
-    const { expanded } = this.state;
+    const { expanded, pos } = this.state;
     return (
-      <g>
+      <g
+        id={ this.props.id }
+        transform = { 'translate(' + pos.x + ', ' + pos.y + ')'}
+      >
         { expanded &&
           this.renderRectGroup()
         }
         { !expanded &&
           this.renderGroup()
         }
+        
       </g>);
   }
 }

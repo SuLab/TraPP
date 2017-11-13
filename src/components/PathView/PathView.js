@@ -2,13 +2,19 @@ import React from 'react';
 import { Container, Form, Button } from 'semantic-ui-react';
 import Connect from '../../utils/connect';
 import * as d3 from 'd3';
+import * as d3force from 'd3-force';
 import { NodeGroup } from '../NodeGroup';
+import sampleNode from '../../assets/sample.js';
 import './styles.css';
 
 class PathView extends React.Component {
   constructor(props) {
     super(props);
+
+    const nodes = this.relocateNodes(sampleNode, 100);
+    
     this.state = {
+      nodes: nodes,
       baseSvg: null,
       width: this.props.width,
       height: this.props.height,
@@ -20,6 +26,9 @@ class PathView extends React.Component {
         y: 0,
       },
     };
+  }
+
+  componentWillMount() {
   }
 
   componentDidMount() {
@@ -35,6 +44,9 @@ class PathView extends React.Component {
                   .on('mouseup', function () { that.onMouseUpHandler(); })
                   .on('click', function () { that.onClickHandler(d3.mouse(this), d3.event);})
                   .call(zoomListener);
+  }
+
+  componentWillReceiveProps(nextProps) {
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -94,31 +106,38 @@ class PathView extends React.Component {
       return [newX, newY];
   }
 
+  relocateNodes(nodes, y) {
+    let newNodes = [];
+    const margin = 200;
+    nodes.forEach((nodes, index) => {
+      const nodeObj = {};
+      nodeObj.nodes = nodes;
+      nodeObj.pos = {
+        x: index * margin,
+        y: y
+      };
+      newNodes.push(nodeObj);
+    });
+    return newNodes;
+  }
+
+  renderFlow() {
+    return this.state.nodes.map((node, index) => {
+      return (
+        <NodeGroup
+          key={index}
+          id={'node' + index}
+          nodes={node.nodes}
+          connect={node.connect}
+          pos={node.pos}
+        />
+      );
+    });
+  }
+
   render() {
     const { isMobile } = this.props;
-    const nodes = [
-      'Node1',
-      'Node2',
-      'Node3',
-      'Node4',
-      'Node5',
-      'Node6',
-      'Node7',
-      'Node8',
-      'Node9',
-      'Node10',
-      'Node11',
-      'Node12',
-      'Node13',
-      'Node14',
-      'Node15',
-      'Node16',
-      'Node17',
-      'Node18',
-      'Node19',
-      'Node20',
-      'Node21'
-    ];
+    
     return (
       <div>
         <h4>PathView</h4>
@@ -127,7 +146,8 @@ class PathView extends React.Component {
           width="100%"
           height="600px">
           <g className="subContainer" transform={ 'translate(' + this.state.transform.x + ', ' + this.state.transform.y + ')scale(' + this.state.transform.k + ')' }>
-            <NodeGroup nodes={nodes} />
+            
+            {this.renderFlow()}
           </g>
         </svg>
       </div>
