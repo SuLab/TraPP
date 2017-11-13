@@ -4,6 +4,7 @@ import Connect from '../../utils/connect';
 import * as d3 from 'd3';
 import * as d3force from 'd3-force';
 import { NodeGroup } from '../NodeGroup';
+import { NodeBlock } from '../NodeBlock';
 import sampleNode from '../../assets/sample.js';
 import './styles.css';
 
@@ -121,7 +122,7 @@ class PathView extends React.Component {
       const nodeObj = {};
       nodeObj.nodes = nodes;
       nodeObj.pos = {
-        x: index * margin,
+        x: index * margin + 180,
         y: y,
       };
       newNodes.push(nodeObj);
@@ -162,6 +163,7 @@ class PathView extends React.Component {
               ')'
             }
           >
+            <NodeBlock />
             {this.renderFlow()}
           </g>
         </svg>
