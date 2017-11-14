@@ -38,7 +38,7 @@ class PathView extends React.Component {
     const that = this;
     const zoomListener = d3
       .zoom()
-      .scaleExtent([0.1, 2])
+      .scaleExtent([0.1, 4])
       .on('zoom', () => {
         that.onZoomHandler(d3.event);
       });
@@ -117,36 +117,49 @@ class PathView extends React.Component {
 
   relocateNodes(nodes, y) {
     let newNodes = [];
-    const margin = 200;
+    const margin = 300;
     nodes.forEach((nodes, index) => {
       const nodeObj = {};
       nodeObj.nodes = nodes;
       nodeObj.pos = {
-        x: index * margin + 180,
+        x: (index + 1) * margin,
         y: y,
       };
+      nodeObj.expanded = false;
       newNodes.push(nodeObj);
     });
     return newNodes;
   }
 
+  onToggleExpand(index, value) {
+    const nodes = [...this.state.nodes];
+    for (let key in nodes) {
+      nodes[key].expanded = false;
+    }
+    nodes[index].expanded = value;
+    this.setState({
+      nodes: nodes,
+    });
+  }
+  
   renderFlow() {
-    return this.state.nodes.map((node, index) => {
+    const { nodes } = this.state;
+    return nodes.map((node, index) => {
       return (
         <NodeGroup
           key={index}
           id={'node' + index}
           nodes={node.nodes}
-          connect={node.connect}
+          expanded={node.expanded}
+          connect={index !== 0 && nodes[index - 1]}
           pos={node.pos}
+          onToggleExpand={this.onToggleExpand.bind(this, index)}
         />
       );
     });
   }
 
   render() {
-    const { isMobile } = this.props;
-
     return (
       <div>
         <h4>PathView</h4>

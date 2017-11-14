@@ -23,13 +23,14 @@ export default class NodeGroup extends React.Component {
       limit: 10,
       rects: this.props.nodes ? this.props.nodes : [],
       expanded: this.props.expanded ? this.props.expanded : false,
+      onToggleExpand: this.props.func,
     };
   }
 
   componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.expanded && this.state.expanded !== nextProps.expanded) {
+    if (this.state.expanded !== nextProps.expanded) {
       this.setState({
         expanded: nextProps.expanded,
       });
@@ -45,12 +46,18 @@ export default class NodeGroup extends React.Component {
     this.setState({
       expanded: true,
     });
+    if (this.props.onToggleExpand) {
+      this.props.onToggleExpand(true);
+    }
   };
 
   onClickCompress = () => {
     this.setState({
       expanded: false,
     });
+    if (this.props.onToggleExpand) {
+      this.props.onToggleExpand(false);
+    }
   };
 
   onClickUp = () => {
@@ -79,19 +86,42 @@ export default class NodeGroup extends React.Component {
     }
   };
 
+  getRectHeight = () => {
+    if (this.state.expanded) {
+      return this.getRectGroupHeight();
+    } else {
+      return 60;
+    }
+  }
+
   renderLinks = () => {
-    const startPos = this.state.connect;
-    const curPos = this.state.pos;
-    if (startPos) {
+    return (
+      <line
+        x1="-150"
+        y1={this.getRectGroupHeight() / 2 + 30}
+        x2="0"
+        y2={this.getRectGroupHeight() / 2 + 30}
+        stroke-width="2"
+        stroke="black"
+      />
+    );
+  };
+
+  renderLinksGroup = () => {
+    const { width, height, margin, rects, offset, limit } = this.state;
+    return rects.slice(offset, offset + limit).map((value, index) => {
+      const y = index * (height + margin) + 35;
       return (
         <line
-          x1={startPos.pos.x}
-          y1={startPos.pos.y}
-          x2={curPos.x}
-          y2={curPos.y}
+          x1="-150"
+          y1={this.getRectGroupHeight() / 2 + 30}
+          x2="0"
+          y2={y + 15}
+          stroke-width="2"
+          stroke="black"
         />
       );
-    }
+    });
   };
 
   renderRect = () => {
@@ -103,7 +133,7 @@ export default class NodeGroup extends React.Component {
           <rect
             width={width}
             height={height}
-            x={'10'}
+            x={'15'}
             y={'0'}
             stroke="black"
             fill="white"
@@ -121,14 +151,14 @@ export default class NodeGroup extends React.Component {
     return (
       <g className="rect-group">
         <rect
-          width="140"
+          width="150"
           height={this.getRectGroupHeight() + 60}
           strokeDasharray="5,2"
           strokeLinecap="butt"
           stroke="black"
           fill="white"
         />
-        <text y="25" x="10">
+        <text y="25" x="15">
           total: {rects.length} nodes
         </text>
         <foreignObject x="125" y="5">
@@ -148,8 +178,9 @@ export default class NodeGroup extends React.Component {
 
   renderGroup = () => {
     const { rects } = this.state;
+    const offsetY = this.getRectGroupHeight() / 2;
     return (
-      <g transform={'translate(0, 0)'}>
+      <g transform={`translate(0, ${offsetY})`}>
         <rect width="150" height="60" x="0" stroke="black" fill="white" />
         <text className="node-label" y="35" x="30" fill="black">
           {rects.length} Nodes
@@ -184,7 +215,7 @@ export default class NodeGroup extends React.Component {
   }
 
   render() {
-    const { expanded, pos } = this.state;
+    const { expanded, pos, connect } = this.state;
     return (
       <g
         id={this.props.id}
@@ -192,6 +223,8 @@ export default class NodeGroup extends React.Component {
       >
         {expanded && this.renderRectGroup()}
         {!expanded && this.renderGroup()}
+        {!expanded && this.renderLinks()}
+        {expanded && this.renderLinksGroup()}
       </g>
     );
   }
