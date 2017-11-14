@@ -1,0 +1,903 @@
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 2804636
+    - 7508351
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 11882918
+    type: TREATS_CDtDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Potassium
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 2804636
+    - 7508351
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 8
+    pmids:
+    - 11882918
+    - 8777958
+    - 4008616
+    - 6364906
+    - 10639760
+    - 13208020
+    - 9602294
+    - 2772863
+    type: ASSOCIATED_WITH_CDawDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Potassium
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 2834114
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 3097863
+    - 23045385
+    - 2173457
+    - 3866516
+    - 8887574
+    - 10425884
+    - 8013602
+    - 9105062
+    - 3404455
+    - 1447846
+    - 22435894
+    - 1952571
+    - 1285568
+    - 17569344
+    - 9227716
+    - 7742148
+    - 2018251
+    - 1804493
+    - 1892302
+    - 11979731
+    - 9160411
+    - 2540892
+    - 3922535
+    - 6393971
+    - 1320824
+    type: ASSOCIATED_WITH_CDawDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Leukotriene D4
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 2834114
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 4
+    pmids:
+    - 10478608
+    - 23825762
+    - 3959748
+    - 6321071
+    type: AUGMENTS_CDagDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Leukotriene D4
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 3196970
+    - 751438
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 8418739
+    - 5029836
+    type: TREATS_CDtDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Meperidine
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 3656193
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 8082355
+    - 10500005
+    type: TREATS_CDtDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Baclofen
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 3656193
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 10378545
+    - 10500005
+    type: ASSOCIATED_WITH_CDawDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Baclofen
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 2416236
+    - 10748268
+    - 7320942
+    - 922255
+    - 16409620
+    - 240756
+    - 7422710
+    - 463703
+    - 2727032
+    - 168089
+    - 5672730
+    - 7142679
+    - 9230751
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 8
+    pmids:
+    - 11574816
+    - 2520485
+    - 7462534
+    - 15863644
+    - 193871
+    - 3076793
+    - 2357244
+    - 1686527
+    type: TREATS_CDtDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Histamine
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 2416236
+    - 10748268
+    - 7320942
+    - 922255
+    - 16409620
+    - 240756
+    - 7422710
+    - 463703
+    - 2727032
+    - 168089
+    - 5672730
+    - 7142679
+    - 9230751
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 11432448
+    - 2879489
+    - 1731592
+    - 2173457
+    - 9066518
+    - 1327639
+    - 1213976
+    - 6648856
+    - 3307547
+    - 3881501
+    - 8837662
+    - 13640737
+    - 3580962
+    - 6640165
+    - 2459176
+    - 2182697
+    - 1793069
+    - 4035630
+    - 4035631
+    - 7543344
+    - 1791025
+    - 12220463
+    - 3781683
+    - 3177008
+    - 5375542
+    - 2759223
+    - 1722427
+    - 1846332
+    - 2076735
+    - 1464896
+    - 5959745
+    - 2229827
+    - 10988099
+    - 3139141
+    - 9488894
+    - 9371207
+    - 9791048
+    - 2454093
+    - 7438414
+    - 2991184
+    - 2764368
+    - 2764369
+    - 16408658
+    - 7335509
+    - 503894
+    - 7654486
+    - 22487127
+    - 2412632
+    - 17456220
+    - 7413341
+    - 1572446
+    - 2474591
+    - 4092512
+    - 1462881
+    - 12480609
+    - 2912356
+    - 6199398
+    - 7028842
+    - 12974188
+    - 12974190
+    - 16290928
+    - 3096179
+    - 13667956
+    - 8735864
+    - 13902458
+    - 1576060
+    - 2461826
+    - 6465669
+    - 8069765
+    - 3693194
+    - 8307852
+    - 7005837
+    - 429710
+    - 2579599
+    - 2437775
+    - 1699986
+    - 59539
+    - 5233817
+    - 2289820
+    - 6230176
+    - 6469794
+    - 1977506
+    - 10883748
+    - 9499813
+    - 7861415
+    - 6201522
+    - 6429878
+    - 9117878
+    - 3076793
+    - 9182905
+    - 2990269
+    - 7744192
+    - 2582720
+    - 1802433
+    - 1252035
+    - 22589633
+    - 10983621
+    - 6610118
+    - 9669831
+    - 12517576
+    - 21618887
+    - 6234831
+    - 9576144
+    - 8994513
+    - 2882770
+    - 1582291
+    - 14208215
+    - 1519831
+    - 6470361
+    - 14736092
+    - 8238813
+    - 13559008
+    - 23501538
+    - 14744809
+    - 7083757
+    - 6653687
+    - 9476856
+    - 1673977
+    - 3028218
+    - 14283004
+    - 512253
+    - 7103742
+    - 6957312
+    - 3804929
+    - 3895555
+    - 3550980
+    - 2708231
+    - 7112458
+    - 2384654
+    - 2907408
+    - 5223700
+    - 5610775
+    - 358167
+    - 816411
+    - 2852123
+    - 2800417
+    - 2589986
+    - 8206116
+    - 8358180
+    - 9179429
+    - 14255912
+    - 5517608
+    - 9713448
+    - 7233842
+    - 21207862
+    - 8112439
+    - 8112440
+    - 15250231
+    - 10588992
+    - 24809793
+    - 6042953
+    - 193871
+    - 1703247
+    - 25164630
+    - 3530072
+    - 2371928
+    - 3570522
+    - 4013914
+    - 3360091
+    - 10841949
+    - 6363488
+    - 7346529
+    - 7261540
+    - 8781669
+    - 3805541
+    - 2929000
+    - 2899312
+    - 3530610
+    - 16868722
+    - 1320824
+    - 10525564
+    - 2876799
+    - 1659268
+    - 6209925
+    - 1139590
+    - 1830277
+    - 12396420
+    - 14420365
+    - 1826192
+    - 3866516
+    - 7453589
+    - 2702228
+    - 3202452
+    - 3195802
+    - 8951195
+    - 7499678
+    - 7083936
+    - 3555750
+    - 7956393
+    - 8542122
+    - 2520494
+    - 12740527
+    - 8418739
+    - 3314612
+    - 8791989
+    - 7554999
+    - 21554104
+    - 6015929
+    - 2980287
+    - 9227716
+    - 7402949
+    - 7281094
+    - 6803911
+    - 3169223
+    - 8140745
+    - 2171852
+    - 6311885
+    - 6178768
+    - 3142612
+    - 17276885
+    - 589783
+    - 4152792
+    - 2451929
+    - 10803682
+    - 2461667
+    - 3028458
+    - 6187498
+    - 2476014
+    - 8104436
+    - 7955958
+    - 838648
+    - 6127098
+    - 3511806
+    type: ASSOCIATED_WITH_CDawDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Histamine
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 2416236
+    - 10748268
+    - 7320942
+    - 922255
+    - 16409620
+    - 240756
+    - 7422710
+    - 463703
+    - 2727032
+    - 168089
+    - 5672730
+    - 7142679
+    - 9230751
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 5
+    pmids:
+    - 582914
+    - 15606018
+    - 11698054
+    - 11918855
+    - 3993867
+    - 3881228
+    - 6137233
+    - 1974289
+    - 27523601
+    - 9066518
+    - 7948439
+    - 16020631
+    - 17470620
+    - 25909280
+    - 14949153
+    - 6469794
+    - 6949923
+    - 1977506
+    - 2917934
+    - 2465334
+    - 10743222
+    - 9196086
+    - 17002806
+    - 1488570
+    - 16136762
+    - 16169787
+    - 2643903
+    - 6344900
+    - 6625349
+    - 2005318
+    - 12572487
+    - 10983621
+    - 15212615
+    - 8568140
+    - 6225358
+    - 21297359
+    - 1973585
+    - 11704532
+    - 2424409
+    - 7125338
+    - 9817691
+    - 6507996
+    - 6152156
+    - 9579742
+    - 7346529
+    - 914406
+    - 2455527
+    - 12212071
+    - 24665578
+    - 8365293
+    - 8752495
+    - 8878067
+    type: AUGMENTS_CDagDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Histamine
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 1804635
+    - 8713492
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 5
+    pmids:
+    - 2913777
+    - 6487474
+    - 3057674
+    - 6118964
+    - 7059447
+    type: TREATS_CDtDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Prazosin
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 1804635
+    - 8713492
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 3201328
+    - 6487474
+    type: AUGMENTS_CDagDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Prazosin
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 19219759
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 21772663
+    type: TREATS_CDtDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Hesperidin
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 19219759
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 21772663
+    type: ASSOCIATED_WITH_CDawDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Hesperidin
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 8260305
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 19069456
+    type: TREATS_CDtDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Potassium Chloride
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 3564872
+    - 4278602
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 15962116
+    - 17144581
+    - 10767239
+    - 7458056
+    - 17456660
+    - 9372699
+    - 8887580
+    - 17208605
+    - 16045864
+    - 332458
+    - 15131566
+    - 472500
+    - 9139770
+    - 18387515
+    - 9194941
+    - 20958143
+    - 8637259
+    - 20874831
+    - 22846675
+    - 23392613
+    - 23548650
+    - 10197230
+    - 16189042
+    - 6757876
+    type: TREATS_CDtDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Lidocaine
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 3564872
+    - 4278602
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 18387515
+    - 472500
+    type: ASSOCIATED_WITH_CDawDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Lidocaine
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 3564872
+    - 4278602
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 11046206
+    type: AUGMENTS_CDagDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Lidocaine
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 4615066
+    - 1376358
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 20060054
+    - 23057471
+    type: ASSOCIATED_WITH_CDawDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Acids
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 4615066
+    - 1376358
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 6952280
+    - 2805862
+    type: AUGMENTS_CDagDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: Acids
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 8216298
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 3
+    pmids:
+    - 8800568
+    - 11392362
+    - 21889828
+    type: TREATS_CDtDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: adrenomedullin
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 8216298
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 2
+    pmids:
+    - 8931633
+    - 11392362
+    type: ASSOCIATED_WITH_CDawDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: adrenomedullin
+  - label: Disorders
+    name: Asthma
+- Edges:
+  - n_pmids: 1
+    pmids:
+    - 35784
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 8216298
+    type: ASSOCIATED_WITH_CDawCD
+  - n_pmids: 1
+    pmids:
+    - 11392362
+    type: AUGMENTS_CDagDO
+  Nodes:
+  - label: Chemicals & Drugs
+    name: chlorcyclizine
+  - label: Chemicals & Drugs
+    name: Atropine
+  - label: Chemicals & Drugs
+    name: adrenomedullin
+  - label: Disorders
+    name: Asthma
