@@ -1,3 +1,6 @@
-.PathForm button {
+.path-form {
+  padding: 20px;
+}
+.path-form button {
   margin-top: 24px !important; 
 }

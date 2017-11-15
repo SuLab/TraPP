@@ -198,8 +198,7 @@ class PathView extends React.Component {
 
   render() {
     return (
-      <div>
-        <h4>PathView</h4>
+      <div className="path-view">
         <svg className="svgContainer" width="100%" height="600px">
           <g
             className="subContainer"

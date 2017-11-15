@@ -37,7 +37,7 @@ export default class NodeBlock extends React.Component {
           stroke="black"
           fill="white"
         />
-        <text y="17" x="30">
+        <text y="150" x="20">
           NodeBlock
         </text>
       </g>

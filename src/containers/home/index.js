@@ -11,7 +11,11 @@ class Home extends React.Component {
   render() {
     return (
       <Container fluid>
-        <PathForm />
+        <Grid>
+          <Grid.Column>
+            <PathForm />
+          </Grid.Column>
+        </Grid>
         <Grid>
           <Grid.Column width={12}>
             <PathView />

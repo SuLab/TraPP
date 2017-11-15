@@ -87,7 +87,7 @@ class PathFilter extends React.Component {
     const { must, type, contain } = this.state;
     const radioType = { must: 'must', type: 'type', contain: 'contain' };
     return (
-      <div>
+      <div className="path-filter">
         <h3>PathFilter:</h3>
         <Grid>
           <Grid.Row columns={3}>
@@ -206,7 +206,9 @@ class PathFilter extends React.Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column>
-              <List size="mini">{this.renderFilters()}</List>
+              <List className="filter-list" size="mini">
+                {this.renderFilters()}
+              </List>
             </Grid.Column>
           </Grid.Row>
         </Grid>

@@ -1,3 +1,7 @@
 .filter-text, .expand-button {
     cursor: pointer;
 }
+
+.up-button, .down-button{
+    background-color: white;
+}

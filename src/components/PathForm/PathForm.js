@@ -8,7 +8,7 @@ class PathForm extends React.Component {
     const { isMobile } = this.props;
 
     return (
-      <div className="PathForm">
+      <div className="path-form">
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Input label="Enter Object1" placeholder="Enter Object1" />
