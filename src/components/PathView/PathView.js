@@ -120,12 +120,18 @@ class PathView extends React.Component {
     const margin = 300;
     nodes.forEach((nodes, index) => {
       const nodeObj = {};
-      nodeObj.nodes = nodes;
+      let edges = [];
+      nodes.Edges.forEach((edge) => {
+        edges = [...edges, ...edge.pmids];
+      });
+      nodeObj.nodes = nodes.Nodes;
       nodeObj.pos = {
         x: (index + 1) * margin,
         y: y,
       };
+      nodeObj.edges = edges;
       nodeObj.expanded = false;
+      nodeObj.edgeExpanded = false;
       newNodes.push(nodeObj);
     });
     return newNodes;
@@ -141,7 +147,18 @@ class PathView extends React.Component {
       nodes: nodes,
     });
   }
-  
+
+  onToggleEdgeExpand(index, value) {
+    const nodes = [...this.state.nodes];
+    for (let key in nodes) {
+      nodes[key].edgeExpanded = false;
+    }
+    nodes[index].edgeExpanded = value;
+    this.setState({
+      nodes: nodes,
+    });
+  }
+
   renderFlow() {
     const { nodes } = this.state;
     return nodes.map((node, index) => {
@@ -151,9 +168,12 @@ class PathView extends React.Component {
           id={'node' + index}
           nodes={node.nodes}
           expanded={node.expanded}
+          edgeExpanded={node.edgeExpanded}
+          edges={node.edges}
           connect={index !== 0 && nodes[index - 1]}
           pos={node.pos}
           onToggleExpand={this.onToggleExpand.bind(this, index)}
+          onToggleEdgeExpand={this.onToggleEdgeExpand.bind(this, index)}
         />
       );
     });
