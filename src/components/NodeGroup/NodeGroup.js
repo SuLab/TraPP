@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
+import './styles.css';
 
 export default class NodeGroup extends React.Component {
   static propTypes = {
@@ -13,6 +14,7 @@ export default class NodeGroup extends React.Component {
     onToggleExpand: PropTypes.func,
     onToggleEdgeExpand: PropTypes.func,
     onEdgeClick: PropTypes.func,
+    onNodeClick: PropTypes.func,
   };
 
   constructor(props) {
@@ -99,7 +101,6 @@ export default class NodeGroup extends React.Component {
   };
 
   onClickUp = () => {
-    console.log('Up');
     if (this.state.offset > 0) {
       this.setState({
         offset: this.state.offset - 1,
@@ -255,6 +256,7 @@ export default class NodeGroup extends React.Component {
               onClick={this.props.onEdgeClick.bind(this, value)}
             />
             <text
+              className="filter-text"
               x="-75"
               y={y + 20}
               onClick={this.props.onEdgeClick.bind(this, value)}
@@ -279,8 +281,14 @@ export default class NodeGroup extends React.Component {
             y={'0'}
             stroke="black"
             fill="white"
+            onClick={this.props.onNodeClick.bind(this, value)}
           />
-          <text y="17" x="30">
+          <text
+            className="filter-text"
+            y="17"
+            x="30"
+            onClick={this.props.onNodeClick.bind(this, value)}
+          >
             {value.name}
           </text>
         </g>

@@ -1,9 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Radio, Grid, List, Button } from 'semantic-ui-react';
 import Connect from '../../utils/connect';
 import './styles.css';
-
+import { FILTER_TYPE } from './../../constants';
 class PathFilter extends React.Component {
+  static propTypes = {
+    selectedValue: PropTypes.any,
+    selectedType: PropTypes.any,
+  };
+
   state = {
     must: true,
     type: true,
@@ -11,6 +17,15 @@ class PathFilter extends React.Component {
     filterValue: '',
     filters: [],
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.selectedValue !== nextProps.selectedValue) {
+      this.setState({
+        filterValue: nextProps.selectedValue,
+        type: nextProps.selectedType === FILTER_TYPE.NODE ? true : false,
+      });
+    }
+  }
 
   handleChange = (type, value) => {
     switch (type) {
@@ -42,10 +57,10 @@ class PathFilter extends React.Component {
 
   removeFilter = index => {
     const { filters } = this.state;
+    console.log(index);
     if (index != -1) {
-      const newFilters = filters.splice(index, 1);
       this.setState({
-        filters: newFilters,
+        filters: [...filters.slice(0, index), ...filters.slice(index + 1)],
       });
     }
   };
@@ -195,10 +210,14 @@ class PathFilter extends React.Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <p>{JSON.stringify(this.state)}</p>
       </div>
     );
   }
 }
 
-export default Connect(null)(PathFilter);
+const mapStateToProps = state => ({
+  selectedValue: state.filter.selectedValue,
+  selectedType: state.filter.selectedType,
+});
+
+export default Connect(mapStateToProps)(PathFilter);

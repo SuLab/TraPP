@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Form, Button } from 'semantic-ui-react';
 import Connect from '../../utils/connect';
 import * as d3 from 'd3';
@@ -7,8 +8,14 @@ import { NodeGroup } from '../NodeGroup';
 import { NodeBlock } from '../NodeBlock';
 import sampleNode from '../../assets/sample.js';
 import './styles.css';
-
+import { dispatch } from 'd3';
+import { setFilterEdge, setFilterNode } from './../../redux/filter';
 class PathView extends React.Component {
+  static propTypes = {
+    setFilterEdge: PropTypes.func.isRequired,
+    setFilterNode: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -121,7 +128,7 @@ class PathView extends React.Component {
     nodes.forEach((nodes, index) => {
       const nodeObj = {};
       let edges = [];
-      nodes.Edges.forEach((edge) => {
+      nodes.Edges.forEach(edge => {
         edges = [...edges, ...edge.pmids];
       });
       nodeObj.nodes = nodes.Nodes;
@@ -159,6 +166,14 @@ class PathView extends React.Component {
     });
   }
 
+  onEdgeClick(value) {
+    this.props.setFilterEdge(value);
+  }
+
+  onNodeClick(value) {
+    this.props.setFilterNode(value.name);
+  }
+
   renderFlow() {
     const { nodes } = this.state;
     return nodes.map((node, index) => {
@@ -174,7 +189,8 @@ class PathView extends React.Component {
           pos={node.pos}
           onToggleExpand={this.onToggleExpand.bind(this, index)}
           onToggleEdgeExpand={this.onToggleEdgeExpand.bind(this, index)}
-          onEdgeClick={this.onEdgeClick}
+          onEdgeClick={this.onEdgeClick.bind(this)}
+          onNodeClick={this.onNodeClick.bind(this)}
         />
       );
     });
@@ -206,4 +222,9 @@ class PathView extends React.Component {
   }
 }
 
-export default Connect(null)(PathView);
+const mapDispatchToProps = dispatch => ({
+  setFilterEdge: data => dispatch(setFilterEdge(data)),
+  setFilterNode: data => dispatch(setFilterNode(data)),
+});
+
+export default Connect(null, mapDispatchToProps)(PathView);

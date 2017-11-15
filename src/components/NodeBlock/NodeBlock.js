@@ -28,7 +28,7 @@ export default class NodeBlock extends React.Component {
   renderRect = () => {
     const { width, height, index, value } = this.state;
     return (
-      <g key={index} transform={'translate(0, 30)'}>
+      <g key={index} transform={'translate(60, 50)'}>
         <rect
           width={width}
           height={height}
