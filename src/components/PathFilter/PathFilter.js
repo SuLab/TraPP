@@ -8,7 +8,10 @@ class PathFilter extends React.Component {
     must: true,
     type: true,
     contain: true,
+    filterValue: '',
+    filters: [],
   };
+
   handleChange = (type, value) => {
     switch (type) {
       case 'must':
@@ -18,6 +21,50 @@ class PathFilter extends React.Component {
       case 'contain':
         return this.setState({ contain: value });
     }
+  };
+
+  addFilter = () => {
+    const must = this.state.must ? 'Must' : 'Must not';
+    const node = this.state.node ? 'Node' : 'Edge';
+    const contain = this.state.contain ? 'contains' : 'exactly matches';
+    const filter = this.state.filterValue;
+    const filterString = `${must} have ${node} ${contain} ${filter}`;
+    this.setState({
+      filters: [filterString, ...this.state.filters],
+    });
+  };
+
+  updateFilterValue = event => {
+    this.setState({
+      filterValue: event.target.value,
+    });
+  };
+
+  removeFilter = index => {
+    const { filters } = this.state;
+    if (index != -1) {
+      const newFilters = filters.splice(index, 1);
+      this.setState({
+        filters: newFilters,
+      });
+    }
+  };
+
+  renderFilters = () => {
+    return this.state.filters.map((filter, index) => {
+      return (
+        <List.Item key={index}>
+          <List.Content verticalAlign="middle" floated="right">
+            <Button size="mini" onClick={this.removeFilter.bind(this, index)}>
+              -
+            </Button>
+          </List.Content>
+          <List.Content verticalAlign="middle">
+            <h5>{filter}</h5>
+          </List.Content>
+        </List.Item>
+      );
+    });
   };
 
   render() {
@@ -125,8 +172,15 @@ class PathFilter extends React.Component {
           <Grid.Row>
             <Form>
               <Form.Group>
-                <Form.Input name="serachTerm" />
-                <Form.Button content="Add" />
+                <Form.Input
+                  name="serachTerm"
+                  value={this.state.filterValue}
+                  onChange={event => this.updateFilterValue(event)}
+                />
+                <Form.Button
+                  content="Add"
+                  onClick={this.addFilter.bind(this)}
+                />
               </Form.Group>
             </Form>
           </Grid.Row>
@@ -137,55 +191,11 @@ class PathFilter extends React.Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column>
-              <List size="mini">
-                <List.Item>
-                  <List.Content verticalAlign="middle" floated="right">
-                    <Button size="mini">-</Button>
-                  </List.Content>
-                  <List.Content verticalAlign="middle">
-                    <h5>
-                      <strong>must</strong> have <strong>Node</strong> exactly
-                      matches <strong>Gene1</strong>{' '}
-                    </h5>
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Content verticalAlign="middle" floated="right">
-                    <Button size="mini">-</Button>
-                  </List.Content>
-                  <List.Content verticalAlign="middle">
-                    <h5>
-                      <strong>must</strong> have <strong>Node</strong> exactly
-                      matches <strong>Gene1</strong>{' '}
-                    </h5>
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Content verticalAlign="middle" floated="right">
-                    <Button size="mini">-</Button>
-                  </List.Content>
-                  <List.Content verticalAlign="middle">
-                    <h5>
-                      <strong>must</strong> have <strong>Node</strong> exactly
-                      matches <strong>Gene1</strong>{' '}
-                    </h5>
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Content verticalAlign="middle" floated="right">
-                    <Button size="mini">-</Button>
-                  </List.Content>
-                  <List.Content verticalAlign="middle">
-                    <h5>
-                      <strong>must</strong> have <strong>Node</strong> exactly
-                      matches <strong>Gene1</strong>{' '}
-                    </h5>
-                  </List.Content>
-                </List.Item>
-              </List>
+              <List size="mini">{this.renderFilters()}</List>
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        <p>{JSON.stringify(this.state)}</p>
       </div>
     );
   }
