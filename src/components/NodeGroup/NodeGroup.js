@@ -12,6 +12,7 @@ export default class NodeGroup extends React.Component {
     id: PropTypes.string,
     onToggleExpand: PropTypes.func,
     onToggleEdgeExpand: PropTypes.func,
+    onEdgeClick: PropTypes.func,
   };
 
   constructor(props) {
@@ -204,6 +205,7 @@ export default class NodeGroup extends React.Component {
       const y = index * (height + margin) + 35;
       return (
         <line
+          key={index}
           x1="-150"
           y1={this.getRectGroupHeight() / 2 + 30}
           x2="0"
@@ -250,8 +252,13 @@ export default class NodeGroup extends React.Component {
               fill="#efefef"
               stroke="#000"
               strokeWidth="0.5"
+              onClick={this.props.onEdgeClick.bind(this, value)}
             />
-            <text x="-75" y={y + 20}>
+            <text
+              x="-75"
+              y={y + 20}
+              onClick={this.props.onEdgeClick.bind(this, value)}
+            >
               {value}
             </text>
           </g>

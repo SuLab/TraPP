@@ -174,6 +174,7 @@ class PathView extends React.Component {
           pos={node.pos}
           onToggleExpand={this.onToggleExpand.bind(this, index)}
           onToggleEdgeExpand={this.onToggleEdgeExpand.bind(this, index)}
+          onEdgeClick={this.onEdgeClick}
         />
       );
     });
