@@ -228,15 +228,25 @@ export default class NodeGroup extends React.Component {
   };
 
   renderEdges = () => {
-    const { height, margin, edges, edgeOffset, edgeLimit, pos, overalHeight } = this.state;
+    const {
+      height,
+      margin,
+      edges,
+      edgeOffset,
+      edgeLimit,
+      pos,
+      overalHeight,
+    } = this.state;
     return edges
       .slice(edgeOffset, edgeOffset + edgeLimit)
       .map((value, index) => {
         const y = pos.y - overalHeight / 2 + index * (height + margin);
+        let x1 = -150;
+        if (this.state.edges.length > this.state.edgeLimit) x1 = -130;
         return (
           <g key={index}>
             <line
-              x1="-150"
+              x1={x1}
               y1={this.getRectGroupHeight() / 2 + 30}
               x2="0"
               y2={y + 15}
