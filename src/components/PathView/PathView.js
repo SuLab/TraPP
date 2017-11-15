@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { node } from 'prop-types';
 import { Container, Form, Button } from 'semantic-ui-react';
 import Connect from '../../utils/connect';
 import * as d3 from 'd3';
@@ -10,10 +10,12 @@ import sampleNode from '../../assets/sample.js';
 import './styles.css';
 import { dispatch } from 'd3';
 import { setFilterEdge, setFilterNode } from './../../redux/filter';
+import { setNodeValues } from './../../redux/path';
 class PathView extends React.Component {
   static propTypes = {
     setFilterEdge: PropTypes.func.isRequired,
     setFilterNode: PropTypes.func.isRequired,
+    setNodeValues: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -37,6 +39,8 @@ class PathView extends React.Component {
         y: 0,
       },
     };
+
+    this.props.setNodeValues(nodes);
   }
 
   componentWillMount() {}
@@ -197,6 +201,8 @@ class PathView extends React.Component {
   }
 
   render() {
+    const lastPosX = this.state.nodes[this.state.nodes.length - 1].pos.x + 200;
+    const lastPos = { x: lastPosX, y: 0 };
     return (
       <div className="path-view">
         <svg className="svgContainer" width="100%" height="600px">
@@ -214,6 +220,7 @@ class PathView extends React.Component {
           >
             <NodeBlock />
             {this.renderFlow()}
+            <NodeBlock pos={lastPos} last={true} />
           </g>
         </svg>
       </div>
@@ -224,6 +231,7 @@ class PathView extends React.Component {
 const mapDispatchToProps = dispatch => ({
   setFilterEdge: data => dispatch(setFilterEdge(data)),
   setFilterNode: data => dispatch(setFilterNode(data)),
+  setNodeValues: data => dispatch(setNodeValues(data)),
 });
 
 export default Connect(null, mapDispatchToProps)(PathView);

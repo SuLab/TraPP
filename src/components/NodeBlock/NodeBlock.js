@@ -8,6 +8,7 @@ export default class NodeBlock extends React.Component {
     pos: PropTypes.object,
     connect: PropTypes.object,
     id: PropTypes.string,
+    last: PropTypes.bool,
   };
 
   constructor(props) {
@@ -18,6 +19,7 @@ export default class NodeBlock extends React.Component {
       connect: this.props.connect ? this.props.connect : null,
       pos: this.props.pos ? this.props.pos : { x: 0, y: 0 },
       expanded: this.props.expanded ? this.props.expanded : false,
+      last: this.props.last ? this.props.last : false,
     };
   }
 
@@ -26,9 +28,19 @@ export default class NodeBlock extends React.Component {
   componentWillReceiveProps(nextProps) {}
 
   renderRect = () => {
-    const { width, height, index, value } = this.state;
+    const { width, height, index, last } = this.state;
     return (
       <g key={index} transform={'translate(60, 50)'}>
+        {last && (
+          <line
+            x1={'-110'}
+            y1={'140'}
+            x2={'10'}
+            y2={'140'}
+            strokeWidth={'2'}
+            stroke="black"
+          />
+        )}
         <rect
           width={width}
           height={height}

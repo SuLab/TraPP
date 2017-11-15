@@ -4,4 +4,5 @@
 .filter-list {
     border: solid 1px;
     min-height: 200px;
+    padding: 10px !important;
 }
