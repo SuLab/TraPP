@@ -14,7 +14,7 @@ class PathForm extends React.Component {
             <Form.Input label="Enter Object1" placeholder="Enter Object1" />
             <Form.Input label="Enter Object2" placeholder="Enter Object2" />
             <Form.Button positive size="small">
-              Positive Button
+              Find Path
             </Form.Button>
           </Form.Group>
         </Form>

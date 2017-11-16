@@ -205,7 +205,7 @@ class PathView extends React.Component {
     const lastPos = { x: lastPosX, y: 0 };
     return (
       <div className="path-view">
-        <svg className="svgContainer" width="100%" height="600px">
+        <svg className="svgContainer" width="100%" height="100%">
           <g
             className="subContainer"
             transform={
