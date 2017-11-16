@@ -16,7 +16,9 @@ export default class EdgeGroup extends React.Component {
     this.state = {
       edges: this.props.edges ? this.props.edges : 0,
       nodes: this.props.nodes ? this.props.nodes : [],
-      rectGroupHeight: this.props.rectGroupHeight ? this.props.rectGroupHeight : 0,
+      rectGroupHeight: this.props.rectGroupHeight
+        ? this.props.rectGroupHeight
+        : 0,
       expanded: this.props.expanded ? this.props.expanded : false,
     };
   }
