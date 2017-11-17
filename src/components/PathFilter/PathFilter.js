@@ -213,6 +213,12 @@ class PathFilter extends React.Component {
               </List>
             </Grid.Column>
           </Grid.Row>
+          <Grid.Row>
+            <Grid.Column width={10} floated="right">
+              <Button negative>Reset</Button>
+              <Button positive>Apply</Button>
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
       </div>
     );
