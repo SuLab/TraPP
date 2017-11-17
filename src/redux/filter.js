@@ -11,6 +11,7 @@ import {
 const initialState = {
   selectedValue: null,
   selectedType: null,
+  contains: true,
   status: null,
 };
 
@@ -21,12 +22,14 @@ export default (state = initialState, action) => {
         ...state,
         selectedValue: action.data,
         selectedType: FILTER_TYPE.EDGE,
+        contains: false,
       };
     case ADD_NODE_FILTER:
       return {
         ...state,
         selectedValue: action.data,
         selectedType: FILTER_TYPE.NODE,
+        contains: false,
       };
     case SET_STATUS_REQUEST:
       return {

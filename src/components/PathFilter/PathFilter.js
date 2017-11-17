@@ -8,6 +8,7 @@ class PathFilter extends React.Component {
   static propTypes = {
     selectedValue: PropTypes.any,
     selectedType: PropTypes.any,
+    isContains: PropTypes.bool,
   };
 
   state = {
@@ -23,6 +24,7 @@ class PathFilter extends React.Component {
       this.setState({
         filterValue: nextProps.selectedValue,
         type: nextProps.selectedType === FILTER_TYPE.NODE ? true : false,
+        contain: nextProps.isContains,
       });
     }
   }
@@ -220,6 +222,7 @@ class PathFilter extends React.Component {
 const mapStateToProps = state => ({
   selectedValue: state.filter.selectedValue,
   selectedType: state.filter.selectedType,
+  isContains: state.filter.contains,
 });
 
 export default Connect(mapStateToProps)(PathFilter);
