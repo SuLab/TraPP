@@ -69,7 +69,8 @@ class PathView extends React.Component {
       .on('click', function() {
         that.onClickHandler(d3.mouse(this), d3.event);
       })
-      .call(zoomListener);
+      .call(zoomListener)
+      .on('dblclick.zoom', null);
   }
 
   componentWillReceiveProps(nextProps) {}
