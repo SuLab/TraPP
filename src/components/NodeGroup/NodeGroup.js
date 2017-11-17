@@ -408,9 +408,8 @@ export default class NodeGroup extends React.Component {
       >
         {expanded && this.renderRectGroup()}
         {!expanded && this.renderGroup()}
-        {!expanded && !edgeExpanded && this.renderLinks()}
+        {!edgeExpanded && this.renderLinks()}
         {!expanded && edgeExpanded && this.renderEdgeGroup()}
-        {expanded && this.renderLinksGroup()}
       </g>
     );
   }
