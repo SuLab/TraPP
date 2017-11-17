@@ -1,8 +1,17 @@
-import { ADD_EDGE_FILTER, ADD_NODE_FILTER, FILTER_TYPE } from './../constants';
+import {
+  ADD_EDGE_FILTER,
+  ADD_NODE_FILTER,
+  FILTER_TYPE,
+  SET_STATUS_REQUEST,
+  SET_STATUS_SUCCESS,
+  SET_STATUS_FAILED,
+  LOAD_STATUS_TYPE,
+} from './../constants';
 
 const initialState = {
   selectedValue: null,
   selectedType: null,
+  status: null,
 };
 
 export default (state = initialState, action) => {
@@ -19,9 +28,32 @@ export default (state = initialState, action) => {
         selectedValue: action.data,
         selectedType: FILTER_TYPE.NODE,
       };
+    case SET_STATUS_REQUEST:
+      return {
+        ...state,
+        status: LOAD_STATUS_TYPE.LOADING,
+      };
+    case SET_STATUS_SUCCESS:
+      return {
+        ...state,
+        status: LOAD_STATUS_TYPE.LOADED,
+      };
+    case SET_STATUS_FAILED:
+      return {
+        ...state,
+        status: LOAD_STATUS_TYPE.ERROR,
+      };
     default:
       return state;
   }
+};
+
+export const setLoadStatus = () => {
+  return dispatch => {
+    dispatch({
+      type: SET_STATUS_SUCCESS,
+    });
+  };
 };
 
 export const setFilterEdge = edge => {

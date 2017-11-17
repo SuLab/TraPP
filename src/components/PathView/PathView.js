@@ -9,6 +9,7 @@ import { NodeBlock } from '../NodeBlock';
 import sampleNode from '../../assets/sample.js';
 import './styles.css';
 import { dispatch } from 'd3';
+import { LOAD_STATUS_TYPE } from './../../constants'
 import { setFilterEdge, setFilterNode } from './../../redux/filter';
 import { setNodeValues } from './../../redux/path';
 class PathView extends React.Component {
@@ -16,6 +17,7 @@ class PathView extends React.Component {
     setFilterEdge: PropTypes.func.isRequired,
     setFilterNode: PropTypes.func.isRequired,
     setNodeValues: PropTypes.func.isRequired,
+    status: PropTypes.any,
   };
 
   constructor(props) {
@@ -203,30 +205,38 @@ class PathView extends React.Component {
   render() {
     const lastPosX = this.state.nodes[this.state.nodes.length - 1].pos.x + 200;
     const lastPos = { x: lastPosX, y: 0 };
+    const isVisible =
+      this.props.status === LOAD_STATUS_TYPE.LOADED ? true : false;
     return (
       <div className="path-view">
         <svg className="svgContainer" width="100%" height="100%">
-          <g
-            className="subContainer"
-            transform={
-              'translate(' +
-              this.state.transform.x +
-              ', ' +
-              this.state.transform.y +
-              ')scale(' +
-              this.state.transform.k +
-              ')'
-            }
-          >
-            <NodeBlock />
-            {this.renderFlow()}
-            <NodeBlock pos={lastPos} last={true} />
-          </g>
+          {isVisible && (
+            <g
+              className="subContainer"
+              transform={
+                'translate(' +
+                this.state.transform.x +
+                ', ' +
+                this.state.transform.y +
+                ')scale(' +
+                this.state.transform.k +
+                ')'
+              }
+            >
+              <NodeBlock />
+              {this.renderFlow()}
+              <NodeBlock pos={lastPos} last={true} />
+            </g>
+          )}
         </svg>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  status: state.filter.status,
+});
 
 const mapDispatchToProps = dispatch => ({
   setFilterEdge: data => dispatch(setFilterEdge(data)),
@@ -234,4 +244,4 @@ const mapDispatchToProps = dispatch => ({
   setNodeValues: data => dispatch(setNodeValues(data)),
 });
 
-export default Connect(null, mapDispatchToProps)(PathView);
+export default Connect(mapStateToProps, mapDispatchToProps)(PathView);
