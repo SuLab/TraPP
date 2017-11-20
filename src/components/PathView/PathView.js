@@ -23,7 +23,7 @@ class PathView extends React.Component {
   constructor(props) {
     super(props);
 
-    const nodes = this.relocateNodes(sampleNode, 100);
+    const nodes = this.relocateNodes(sampleNode);
 
     this.state = {
       nodes: nodes,
@@ -129,24 +129,76 @@ class PathView extends React.Component {
     return [newX, newY];
   }
 
-  relocateNodes(nodes, y) {
+  relocateNodes(nodes) {
     let newNodes = [];
-    const margin = 300;
-    nodes.forEach((nodes, index) => {
-      const nodeObj = {};
-      let edges = [];
-      nodes.Edges.forEach(edge => {
-        edges = [...edges, ...edge.pmids];
+    nodes.forEach(item => {
+      item.Nodes.forEach((node, key1) => {
+        if (key1 != item.Nodes.length - 1) {
+          const nodeKey = {
+            name: node.name,
+            label: node.label,
+            next: item.Nodes[key1 + 1].name,
+            edge: item.Edges[key1],
+          };
+          if (!newNodes[key1]) newNodes[key1] = new Array();
+          let nodeIndex = 0;
+          if (
+            newNodes[key1].filter(e => {
+              return e.name == nodeKey.name;
+            }).length == 0
+          ) {
+            newNodes[key1].push({
+              name: nodeKey.name,
+              label: nodeKey.label,
+              next: [],
+              nnodes: 1,
+            });
+            nodeIndex = newNodes[key1].length - 1;
+          }
+          if (
+            newNodes[key1].filter((e, index) => {
+              if (e.name == nodeKey.name) {
+                nodeIndex = index;
+              }
+              return e.name == nodeKey.name;
+            }).length == 1
+          ) {
+            newNodes[key1][nodeIndex].nnodes++;
+          }
+          if (
+            newNodes[key1][nodeIndex].next.filter(e => {
+              return e.name == nodeKey.next && e.edge.type == nodeKey.edge.type;
+            }).length == 0
+          ) {
+            newNodes[key1][nodeIndex].next.push({
+              name: nodeKey.next,
+              edge: nodeKey.edge,
+            });
+          }
+        } else {
+          const nodeKey = {
+            name: node.name,
+            label: node.label,
+          };
+          if (!newNodes[key1]) newNodes[key1] = [];
+          if (
+            newNodes[key1].filter(e => {
+              return e.name == node.name;
+            }).length == 0
+          ) {
+            if (
+              newNodes[key1].filter(e => {
+                return e.name == nodeKey.name;
+              }).length == 0
+            ) {
+              newNodes[key1].push({
+                name: nodeKey.name,
+                label: nodeKey.label,
+              });
+            }
+          }
+        }
       });
-      nodeObj.nodes = nodes.Nodes;
-      nodeObj.pos = {
-        x: (index + 1) * margin,
-        y: y,
-      };
-      nodeObj.edges = edges;
-      nodeObj.expanded = false;
-      nodeObj.edgeExpanded = false;
-      newNodes.push(nodeObj);
     });
     return newNodes;
   }
@@ -184,16 +236,20 @@ class PathView extends React.Component {
   renderFlow() {
     const { nodes } = this.state;
     return nodes.map((node, index) => {
+      const margin = 300;
+      const pos = {
+        x: margin * index,
+        y: 100,
+      };
       return (
         <NodeGroup
           key={index}
           id={'node' + index}
-          nodes={node.nodes}
+          nodes={node}
+          last={index == nodes.length-1}
           expanded={node.expanded}
           edgeExpanded={node.edgeExpanded}
-          edges={node.edges}
-          connect={index !== 0 && nodes[index - 1]}
-          pos={node.pos}
+          pos={pos}
           onToggleExpand={this.onToggleExpand.bind(this, index)}
           onToggleEdgeExpand={this.onToggleEdgeExpand.bind(this, index)}
           onEdgeClick={this.onEdgeClick.bind(this)}
@@ -204,31 +260,25 @@ class PathView extends React.Component {
   }
 
   render() {
-    const lastPosX = this.state.nodes[this.state.nodes.length - 1].pos.x + 200;
-    const lastPos = { x: lastPosX, y: 0 };
     const isVisible =
       this.props.status === LOAD_STATUS_TYPE.LOADED ? true : false;
     return (
       <div className="path-view">
         <svg className="svgContainer" width="100%" height="100%">
-          {isVisible && (
-            <g
-              className="subContainer"
-              transform={
-                'translate(' +
-                this.state.transform.x +
-                ', ' +
-                this.state.transform.y +
-                ')scale(' +
-                this.state.transform.k +
-                ')'
-              }
-            >
-              <NodeBlock />
-              {this.renderFlow()}
-              <NodeBlock pos={lastPos} last={true} />
-            </g>
-          )}
+          <g
+            className="subContainer"
+            transform={
+              'translate(' +
+              this.state.transform.x +
+              ', ' +
+              this.state.transform.y +
+              ')scale(' +
+              this.state.transform.k +
+              ')'
+            }
+          >
+            {this.renderFlow()}
+          </g>
         </svg>
       </div>
     );

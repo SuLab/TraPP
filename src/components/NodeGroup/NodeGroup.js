@@ -19,12 +19,22 @@ export default class NodeGroup extends React.Component {
 
   constructor(props) {
     super(props);
+    let edges = [];
+    if (this.props.nodes) {
+      this.props.nodes.forEach(element => {
+        if (element.next) {
+          element.next.forEach(item => {
+            edges = edges.concat(item.edge.pmids);
+          });
+        }
+      });
+    }
     this.state = {
       width: 120,
       height: 25,
       overalHeight: 60,
       pos: this.props.pos ? this.props.pos : { x: 0, y: 0 },
-      edges: this.props.edges ? this.props.edges : [],
+      edges: edges,
       margin: 5,
       offset: 0,
       limit: 10,
@@ -165,15 +175,15 @@ export default class NodeGroup extends React.Component {
     return (
       <g className="edges">
         <line
-          x1="-150"
+          x1="150"
           y1={this.getRectGroupHeight() / 2 + 30}
-          x2="0"
+          x2="300"
           y2={this.getRectGroupHeight() / 2 + 30}
           strokeWidth="2"
           stroke="black"
         />
         <rect
-          x="-120"
+          x="180"
           y={this.getRectGroupHeight() / 2 + 20}
           rx="3"
           ry="3"
@@ -184,10 +194,10 @@ export default class NodeGroup extends React.Component {
           stroke="#000"
           strokeWidth="0.5"
         />
-        <text y={this.getRectGroupHeight() / 2 + 33} x="-100">
+        <text y={this.getRectGroupHeight() / 2 + 33} x="210">
           {this.state.edges.length} edges
         </text>
-        <foreignObject x="-35" y={this.getRectGroupHeight() / 2 + 15}>
+        <foreignObject x="265" y={this.getRectGroupHeight() / 2 + 15}>
           <form>
             <i
               className="fa fa-expand expand-button"
@@ -401,6 +411,7 @@ export default class NodeGroup extends React.Component {
 
   render() {
     const { expanded, edgeExpanded, pos } = this.state;
+    const last = this.props.last;
     return (
       <g
         id={this.props.id}
@@ -408,8 +419,8 @@ export default class NodeGroup extends React.Component {
       >
         {expanded && this.renderRectGroup()}
         {!expanded && this.renderGroup()}
-        {!edgeExpanded && this.renderLinks()}
-        {!expanded && edgeExpanded && this.renderEdgeGroup()}
+        {!last && !edgeExpanded && this.renderLinks()}
+        {!last && !expanded && edgeExpanded && this.renderEdgeGroup()}
       </g>
     );
   }
