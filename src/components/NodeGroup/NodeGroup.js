@@ -55,13 +55,8 @@ export default class NodeGroup extends React.Component {
       });
     }
     if (this.state.edgeExpanded !== nextProps.edgeExpanded) {
-      let overalHeight = 60;
-      if (nextProps.edgeExpanded) {
-        overalHeight = this.getEdgeGroupHeight() + 20;
-      }
       this.setState({
         edgeExpanded: nextProps.edgeExpanded,
-        overalHeight: overalHeight,
       });
     }
     if (nextProps.pos && this.state.pos) {
@@ -249,23 +244,21 @@ export default class NodeGroup extends React.Component {
       pos,
       overalHeight,
     } = this.state;
+    const offsetY = this.getRectGroupHeight() / 2;
+    const curveOffset = 50;
+    const limitLength = (edges.length > edgeLimit) ? edgeLimit : edges.length;
+    const curveRange = curveOffset * limitLength;
     return edges
       .slice(edgeOffset, edgeOffset + edgeLimit)
       .map((value, index) => {
         const y = pos.y - overalHeight / 2 + index * (height + margin);
         let x1 = 0;
         if (this.state.edges.length > this.state.edgeLimit) x1 = -130;
+        const offset = curveOffset * index - curveRange / 2;
         return (
-          <g key={index}>
-            <line
-              x1="150"
-              y1={this.getRectGroupHeight() / 2 + 30}
-              x2="300"
-              y2={y + 15}
-              strokeWidth="1"
-              stroke="black"
-            />
-            <g transform={'translate(150, ' + y + ')'}>
+          <g key={index} transform={'translate(0, 30)'}>
+            <path d={`M150,0C150,0,240,${offset},300,0`} fill="none" stroke="#000" />
+            <g transform={'translate(120, ' + offset / 2 + ')'}>
               <rect
                 x="70"
                 y={5}
@@ -397,7 +390,7 @@ export default class NodeGroup extends React.Component {
 
   renderVerticalScrollButton() {
     return (
-      <foreignObject x="-150" y={this.getRectGroupHeight() / 2 + 10}>
+      <foreignObject x="150" y={10}>
         <form className="">
           <i
             className="fa fa-chevron-up up-button"
