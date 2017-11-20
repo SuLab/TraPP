@@ -9,7 +9,7 @@ import { NodeBlock } from '../NodeBlock';
 import sampleNode from '../../assets/sample.js';
 import './styles.css';
 import { dispatch } from 'd3';
-import { LOAD_STATUS_TYPE } from './../../constants'
+import { LOAD_STATUS_TYPE } from './../../constants';
 import { setFilterEdge, setFilterNode } from './../../redux/filter';
 import { setNodeValues } from './../../redux/path';
 class PathView extends React.Component {
@@ -247,7 +247,6 @@ class PathView extends React.Component {
           id={'node' + index}
           nodes={node}
           last={index == nodes.length - 1}
-          first={index==0}
           expanded={node.expanded}
           edgeExpanded={node.edgeExpanded}
           pos={pos}
@@ -266,20 +265,22 @@ class PathView extends React.Component {
     return (
       <div className="path-view">
         <svg className="svgContainer" width="100%" height="100%">
-          <g
-            className="subContainer"
-            transform={
-              'translate(' +
-              this.state.transform.x +
-              ', ' +
-              this.state.transform.y +
-              ')scale(' +
-              this.state.transform.k +
-              ')'
-            }
-          >
-            {this.renderFlow()}
-          </g>
+          {isVisible && (
+            <g
+              className="subContainer"
+              transform={
+                'translate(' +
+                this.state.transform.x +
+                ', ' +
+                this.state.transform.y +
+                ')scale(' +
+                this.state.transform.k +
+                ')'
+              }
+            >
+              {this.renderFlow()}
+            </g>
+          )}
         </svg>
       </div>
     );
