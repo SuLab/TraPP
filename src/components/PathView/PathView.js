@@ -247,6 +247,7 @@ class PathView extends React.Component {
           id={'node' + index}
           nodes={node}
           last={index == nodes.length - 1}
+          first={index==0}
           expanded={node.expanded}
           edgeExpanded={node.edgeExpanded}
           pos={pos}

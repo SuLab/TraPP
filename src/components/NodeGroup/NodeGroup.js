@@ -147,7 +147,9 @@ export default class NodeGroup extends React.Component {
 
   getRectGroupHeight = () => {
     const { height, margin, rects, limit } = this.state;
-    if (rects.length > limit) {
+    if (rects.length == 1) {
+      return height;
+    } else if (rects.length > limit) {
       return limit * (height + margin);
     } else {
       return rects.length * (height + margin);
@@ -176,15 +178,15 @@ export default class NodeGroup extends React.Component {
       <g className="edges">
         <line
           x1="150"
-          y1={this.getRectHeight() + 30}
+          y1={30}
           x2="300"
-          y2={this.getRectHeight() + 30}
+          y2={30}
           strokeWidth="2"
           stroke="black"
         />
         <rect
           x="180"
-          y={this.getRectHeight() + 20}
+          y={20}
           rx="3"
           ry="3"
           width="90"
@@ -194,10 +196,10 @@ export default class NodeGroup extends React.Component {
           stroke="#000"
           strokeWidth="0.5"
         />
-        <text y={this.getRectHeight() + 33} x="210">
+        <text y={33} x="210">
           {this.state.edges.length} edges
         </text>
-        <foreignObject x="265" y={this.getRectHeight() + 15}>
+        <foreignObject x="265" y={15}>
           <form>
             <i
               className="fa fa-expand expand-button"
@@ -251,38 +253,40 @@ export default class NodeGroup extends React.Component {
       .slice(edgeOffset, edgeOffset + edgeLimit)
       .map((value, index) => {
         const y = pos.y - overalHeight / 2 + index * (height + margin);
-        let x1 = -150;
+        let x1 = 0;
         if (this.state.edges.length > this.state.edgeLimit) x1 = -130;
         return (
           <g key={index}>
             <line
-              x1={x1}
+              x1="150"
               y1={this.getRectGroupHeight() / 2 + 30}
-              x2="0"
+              x2="300"
               y2={y + 15}
               strokeWidth="1"
               stroke="black"
             />
-            <rect
-              x="-80"
-              y={y + 5}
-              rx="3"
-              ry="3"
-              width="60"
-              height="20"
-              fill="#efefef"
-              stroke="#000"
-              strokeWidth="0.5"
-              onClick={this.props.onEdgeClick.bind(this, value)}
-            />
-            <text
-              className="filter-text"
-              x="-75"
-              y={y + 20}
-              onClick={this.props.onEdgeClick.bind(this, value)}
-            >
-              {value}
-            </text>
+            <g transform={'translate(150, ' + y + ')'}>
+              <rect
+                x="70"
+                y={5}
+                rx="3"
+                ry="3"
+                width="60"
+                height="20"
+                fill="#efefef"
+                stroke="#000"
+                strokeWidth="0.5"
+                onClick={this.props.onEdgeClick.bind(this, value)}
+              />
+              <text
+                className="filter-text"
+                x="75"
+                y={20}
+                onClick={this.props.onEdgeClick.bind(this, value)}
+              >
+                {value}
+              </text>
+            </g>
           </g>
         );
       });
@@ -317,9 +321,10 @@ export default class NodeGroup extends React.Component {
   };
 
   renderRectGroup = () => {
-    const { rects, limit } = this.state;
+    const { rects, pos, overalHeight, limit } = this.state;
+    const offsetY = (this.getRectGroupHeight() + 60 - overalHeight) / 2;
     return (
-      <g className="rect-group">
+      <g className="rect-group" transform={`translate(0, -${offsetY})`}>
         <rect
           width="150"
           height={this.getRectGroupHeight() + 60}
@@ -350,7 +355,7 @@ export default class NodeGroup extends React.Component {
     const { rects, pos, overalHeight } = this.state;
     const offsetY = pos.y - overalHeight / 2 - 10;
     return (
-      <g transform={`translate(0, ${offsetY})`}>
+      <g transform={`translate(0, 0)`}>
         <rect
           width="150"
           height={this.state.overalHeight}
