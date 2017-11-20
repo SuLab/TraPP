@@ -8,6 +8,9 @@ import './styles.css';
 class PathForm extends React.Component {
   static propTypes = {
     setLoadStatus: PropTypes.func.isRequired,
+    pathCount: PropTypes.number,
+    edgeCount: PropTypes.number,
+    nodeCount: PropTypes.number,
   };
 
   constructor(props) {
@@ -19,6 +22,7 @@ class PathForm extends React.Component {
   }
 
   render() {
+    const { pathCount, edgeCount, nodeCount } = this.props;
     return (
       <div className="path-form">
         <Form onSubmit={this.handleSubmit.bind(this)}>
@@ -39,16 +43,22 @@ class PathForm extends React.Component {
           </Form.Group>
         </Form>
         <h4>
-          Total XXX paths found (XXX nodes and XXX edges), XX paths (XX nodes
-          and XX edges) displayed
+          Total {pathCount} paths found ({nodeCount} nodes and {edgeCount}{' '}
+          edges), {pathCount} paths ({nodeCount} nodes and {edgeCount} edges)
+          displayed
         </h4>
       </div>
     );
   }
 }
+const mapStateToProps = state => ({
+  pathCount: state.path.pathCount,
+  edgeCount: state.path.edgeCount,
+  nodeCount: state.path.nodeCount,
+});
 
 const mapDispatchToProps = dispatch => ({
   setLoadStatus: () => dispatch(setLoadStatus()),
 });
 
-export default Connect(null, mapDispatchToProps)(PathForm);
+export default Connect(mapStateToProps, mapDispatchToProps)(PathForm);
