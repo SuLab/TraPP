@@ -165,7 +165,7 @@ export default class NodeGroup extends React.Component {
 
   getRectHeight = () => {
     if (this.state.expanded) {
-      return this.getRectGroupHeight();
+      return this.getRectGroupHeight() / 2;
     } else {
       return this.state.overalHeight;
     }
@@ -176,15 +176,15 @@ export default class NodeGroup extends React.Component {
       <g className="edges">
         <line
           x1="150"
-          y1={this.getRectGroupHeight() / 2 + 30}
+          y1={this.getRectHeight() + 30}
           x2="300"
-          y2={this.getRectGroupHeight() / 2 + 30}
+          y2={this.getRectHeight() + 30}
           strokeWidth="2"
           stroke="black"
         />
         <rect
           x="180"
-          y={this.getRectGroupHeight() / 2 + 20}
+          y={this.getRectHeight() + 20}
           rx="3"
           ry="3"
           width="90"
@@ -194,10 +194,10 @@ export default class NodeGroup extends React.Component {
           stroke="#000"
           strokeWidth="0.5"
         />
-        <text y={this.getRectGroupHeight() / 2 + 33} x="210">
+        <text y={this.getRectHeight() + 33} x="210">
           {this.state.edges.length} edges
         </text>
-        <foreignObject x="265" y={this.getRectGroupHeight() / 2 + 15}>
+        <foreignObject x="265" y={this.getRectHeight() + 15}>
           <form>
             <i
               className="fa fa-expand expand-button"
