@@ -236,7 +236,7 @@ class PathView extends React.Component {
   renderFlow() {
     const { nodes } = this.state;
     return nodes.map((node, index) => {
-      const margin = 300;
+      const margin = 400;
       const pos = {
         x: margin * index,
         y: 100,
@@ -247,6 +247,7 @@ class PathView extends React.Component {
           id={'node' + index}
           nodes={node}
           last={index == nodes.length - 1}
+          first={index == 0}
           expanded={node.expanded}
           edgeExpanded={node.edgeExpanded}
           pos={pos}

@@ -7,6 +7,7 @@ export default class NodeGroup extends React.Component {
   static propTypes = {
     nodes: PropTypes.array,
     expanded: PropTypes.bool,
+    prevEdgeExpanded: PropTypes.bool,
     edgeExpanded: PropTypes.bool,
     edges: PropTypes.array,
     pos: PropTypes.object,
@@ -33,6 +34,7 @@ export default class NodeGroup extends React.Component {
       width: 120,
       height: 25,
       overalHeight: 60,
+      lineLength: 400,
       pos: this.props.pos ? this.props.pos : { x: 0, y: 0 },
       edges: edges,
       margin: 5,
@@ -168,13 +170,19 @@ export default class NodeGroup extends React.Component {
     }
   };
 
+  generateCurve = offset => {
+    const path = `M 150 0 C 180 0 180 ${offset} 220 ${offset} C 280 ${offset} 280 ${offset} 330 ${offset} C 370 ${offset} 370 0 400 0`;
+    return path;
+  };
+
   renderLinks = () => {
+    const { lineLength } = this.state;
     return (
       <g className="edges">
         <line
           x1="150"
           y1={30}
-          x2="300"
+          x2={lineLength}
           y2={30}
           strokeWidth="2"
           stroke="black"
@@ -235,33 +243,21 @@ export default class NodeGroup extends React.Component {
   };
 
   renderEdges = () => {
-    const {
-      height,
-      margin,
-      edges,
-      edgeOffset,
-      edgeLimit,
-      pos,
-      overalHeight,
-    } = this.state;
-    const offsetY = this.getRectGroupHeight() / 2;
-    const curveOffset = 50;
-    const limitLength = (edges.length > edgeLimit) ? edgeLimit : edges.length;
+    const { edges, edgeOffset, edgeLimit } = this.state;
+    const curveOffset = 20;
+    const limitLength = edges.length > edgeLimit ? edgeLimit : edges.length;
     const curveRange = curveOffset * limitLength;
     return edges
       .slice(edgeOffset, edgeOffset + edgeLimit)
       .map((value, index) => {
-        const y = pos.y - overalHeight / 2 + index * (height + margin);
-        let x1 = 0;
-        if (this.state.edges.length > this.state.edgeLimit) x1 = -130;
         const offset = curveOffset * index - curveRange / 2;
         return (
           <g key={index} transform={'translate(0, 30)'}>
-            <path d={`M150,0C150,0,240,${offset},300,0`} fill="none" stroke="#000" />
-            <g transform={'translate(120, ' + offset / 2 + ')'}>
+            <path d={this.generateCurve(offset)} fill="none" stroke="#555" />
+            <g transform={'translate(120, ' + offset + ')'}>
               <rect
-                x="70"
-                y={5}
+                x="120"
+                y={-10}
                 rx="3"
                 ry="3"
                 width="60"
@@ -273,8 +269,8 @@ export default class NodeGroup extends React.Component {
               />
               <text
                 className="filter-text"
-                x="75"
-                y={20}
+                x="125"
+                y={5}
                 onClick={this.props.onEdgeClick.bind(this, value)}
               >
                 {value}
@@ -404,6 +400,31 @@ export default class NodeGroup extends React.Component {
           />
         </form>
       </foreignObject>
+    );
+  }
+
+  renderEndPoints() {
+    const { rects, pos, overalHeight } = this.state;
+    const offsetY = pos.y - overalHeight / 2 - 10;
+    return (
+      <g transform={`translate(0, 0)`}>
+        <rect
+          width="50"
+          height={this.state.overalHeight}
+          x="0"
+          stroke="black"
+          fill="white"
+        />
+        <text className="node-label" y="35" x="30" fill="black">
+          {rects.length} Nodes
+        </text>
+        <g className="plus-button" onClick={this.onClickPlus}>
+          <rect width="20" height="20" x="0" stroke="black" fill="white" />
+          <text className="plus-sign" y="15" x="5" fill="black">
+            +
+          </text>
+        </g>
+      </g>
     );
   }
 
