@@ -188,7 +188,7 @@ export default class NodeGroup extends React.Component {
           stroke="black"
         />
         <rect
-          x="180"
+          x="225"
           y={20}
           rx="3"
           ry="3"
@@ -199,10 +199,10 @@ export default class NodeGroup extends React.Component {
           stroke="#000"
           strokeWidth="0.5"
         />
-        <text y={33} x="210">
+        <text y={33} x="250">
           {this.state.edges.length} edges
         </text>
-        <foreignObject x="265" y={15}>
+        <foreignObject x="310" y={15}>
           <form>
             <i
               className="fa fa-expand expand-button"
@@ -250,7 +250,8 @@ export default class NodeGroup extends React.Component {
     return edges
       .slice(edgeOffset, edgeOffset + edgeLimit)
       .map((value, index) => {
-        const offset = curveOffset * index - curveRange / 2;
+        const offset =
+          edges.length == 1 ? 0 : curveOffset * index - curveRange / 2;
         return (
           <g key={index} transform={'translate(0, 30)'}>
             <path d={this.generateCurve(offset)} fill="none" stroke="#555" />
