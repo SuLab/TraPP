@@ -25,7 +25,7 @@ export default class NodeGroup extends React.Component {
       this.props.nodes.forEach(element => {
         if (element.next) {
           element.next.forEach(item => {
-            edges = edges.concat(item.edge.pmids);
+            edges = edges.concat(item.edge.type);
           });
         }
       });
@@ -171,7 +171,7 @@ export default class NodeGroup extends React.Component {
   };
 
   generateCurve = offset => {
-    const path = `M 150 0 C 180 0 180 ${offset} 220 ${offset} C 280 ${offset} 280 ${offset} 330 ${offset} C 370 ${offset} 370 0 400 0`;
+    const path = `M 150 0 C 180 0 150 ${offset} 220 ${offset} C 280 ${offset} 280 ${offset} 330 ${offset} C 399 ${offset} 399 0 400 0`;
     return path;
   };
 
@@ -244,7 +244,7 @@ export default class NodeGroup extends React.Component {
 
   renderEdges = () => {
     const { edges, edgeOffset, edgeLimit } = this.state;
-    const curveOffset = 20;
+    const curveOffset = 30;
     const limitLength = edges.length > edgeLimit ? edgeLimit : edges.length;
     const curveRange = curveOffset * limitLength;
     return edges
@@ -255,13 +255,13 @@ export default class NodeGroup extends React.Component {
         return (
           <g key={index} transform={'translate(0, 30)'}>
             <path d={this.generateCurve(offset)} fill="none" stroke="#555" />
-            <g transform={'translate(120, ' + offset + ')'}>
+            <g transform={'translate(70, ' + offset + ')'}>
               <rect
                 x="120"
                 y={-10}
                 rx="3"
                 ry="3"
-                width="60"
+                width="180"
                 height="20"
                 fill="#efefef"
                 stroke="#000"
