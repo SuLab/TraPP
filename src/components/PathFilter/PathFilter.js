@@ -42,7 +42,7 @@ class PathFilter extends React.Component {
 
   addFilter = () => {
     const must = this.state.must ? 'Must' : 'Must not';
-    const node = this.state.node ? 'Node' : 'Edge';
+    const node = this.state.type ? 'Node' : 'Edge';
     const contain = this.state.contain ? 'contains' : 'exactly matches';
     const filter = this.state.filterValue;
     const filterString = `${must} have ${node} ${contain} ${filter}`;
