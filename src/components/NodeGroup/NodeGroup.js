@@ -310,6 +310,60 @@ export default class NodeGroup extends React.Component {
     });
   };
 
+  renderFirstTitle = () => {
+    const { rects } = this.state;
+    return rects.slice(0, 1).map((value, index) => {
+      return (
+        <g key={index} transform={'translate(0, 75)'}>
+          <text
+            className="filter-text"
+            y="30"
+            x="5"
+            onClick={this.props.onNodeClick.bind(this, value)}
+          >
+            {value.name}
+          </text>
+        </g>
+      );
+    });
+  };
+
+  renderLastTitle = () => {
+    const { rects } = this.state;
+    return rects.slice(0, 1).map((value, index) => {
+      return (
+        <g key={index} transform={'translate(10, 75)'}>
+          <text
+            className="filter-text"
+            y="30"
+            x="5"
+            onClick={this.props.onNodeClick.bind(this, value)}
+          >
+            {value.name}
+          </text>
+        </g>
+      );
+    });
+  };
+
+  renderFirstBlock = () => {
+    return (
+      <g className="rect-group" transform={`translate(70, -75)`}>
+        <rect width="80" height="200" stroke="black" fill="white" />
+        {this.renderFirstTitle()}
+      </g>
+    );
+  };
+
+  renderLastBlock = () => {
+    return (
+      <g className="rect-group" transform={`translate(0, -75)`}>
+        <rect width="80" height="200" stroke="black" fill="white" />
+        {this.renderLastTitle()}
+      </g>
+    );
+  };
+
   renderRectGroup = () => {
     const { rects, pos, overalHeight, limit } = this.state;
     const offsetY = (this.getRectGroupHeight() + 60 - overalHeight) / 2;
@@ -431,14 +485,16 @@ export default class NodeGroup extends React.Component {
 
   render() {
     const { expanded, edgeExpanded, pos } = this.state;
-    const last = this.props.last;
+    const { first, last } = this.props;
     return (
       <g
         id={this.props.id}
         transform={'translate(' + pos.x + ', ' + pos.y + ')'}
       >
-        {expanded && this.renderRectGroup()}
-        {!expanded && this.renderGroup()}
+        {first && this.renderFirstBlock()}
+        {last && this.renderLastBlock()}
+        {!first && !last && expanded && this.renderRectGroup()}
+        {!first && !last && !expanded && this.renderGroup()}
         {!last && !edgeExpanded && this.renderLinks()}
         {!last && !expanded && edgeExpanded && this.renderEdgeGroup()}
       </g>
